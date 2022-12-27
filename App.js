@@ -1,13 +1,16 @@
+import { createStackNavigator } from "@react-navigation/stack";
 import { useCallback, useEffect, useState } from "react";
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import * as Font from "expo-font";
-import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
+import { NavigationContainer } from "@react-navigation/native";
+
 import LoginScreen from "./Screens/LoginScreen";
 import RegistrationScreen from "./Screens/RegistrationScreen";
+import BottomTabNavigator from "./Navigation/BottomTabNavigator";
 
-SplashScreen.preventAutoHideAsync();
+const MainStack = createStackNavigator();
 
 const loadFonts = async () => {
   await Font.loadAsync({
@@ -44,11 +47,26 @@ export default function App() {
   }
 
   return (
-    <View style={styles.container} onLayout={onLayoutRootView}>
-      {/* <LoginScreen /> */}
-      <RegistrationScreen />
+    <NavigationContainer style={styles.container} onLayout={onLayoutRootView}>
+      <MainStack.Navigator initialRouteName="Login">
+        <MainStack.Screen
+          options={{ headerShown: false }}
+          name="Login"
+          component={LoginScreen}
+        />
+        <MainStack.Screen
+          options={{ headerShown: false }}
+          name="Registration"
+          component={RegistrationScreen}
+        />
+        <MainStack.Screen
+          options={{ headerShown: false }}
+          name="BottomTabNavigator"
+          component={BottomTabNavigator}
+        />
+      </MainStack.Navigator>
       <StatusBar style="auto" />
-    </View>
+    </NavigationContainer>
   );
 }
 
@@ -56,9 +74,5 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
-    // alignItems: "center",
-    // justifyContent: "center",
   },
 });
-
-// export default App;
