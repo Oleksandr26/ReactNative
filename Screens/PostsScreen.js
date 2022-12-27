@@ -4,6 +4,7 @@ import BackArrow from "../Navigation/BackArrow";
 import CommentsScreen from "./CommentsScreen";
 import MapScreen from "./MapScreen";
 import Home from "./Home";
+import Logout from "../Navigation/Logout";
 
 const PostsStack = createStackNavigator();
 
