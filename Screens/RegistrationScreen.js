@@ -13,7 +13,7 @@ import {
   useWindowDimensions,
 } from "react-native";
 
-const RegistrationScreen = () => {
+const RegistrationScreen = ({ navigation }) => {
   const [isHidePass, setIsHidePass] = useState(true);
   const [login, setLogin] = useState();
   const [email, setEmail] = useState();
@@ -48,6 +48,7 @@ const RegistrationScreen = () => {
     setEmail("");
     setPassword("");
     setFocused(null);
+    navigation.navigate("BottomTabNavigator");
   };
 
   return (
@@ -126,7 +127,11 @@ const RegistrationScreen = () => {
             >
               <Text style={s.btnText}>Зарегистрироваться</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={s.btn2} activeOpacity={0.7}>
+            <TouchableOpacity
+              style={s.btn2}
+              activeOpacity={0.7}
+              onPress={() => navigation.navigate("Login")}
+            >
               <Text style={s.btnText2}>Уже есть аккаунт? Войти</Text>
             </TouchableOpacity>
           </View>

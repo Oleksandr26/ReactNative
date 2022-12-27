@@ -13,7 +13,7 @@ import {
   ImageBackground,
 } from "react-native";
 
-const LoginScreen = () => {
+const LoginScreen = ({ navigation }) => {
   const [isHidePass, setIsHidePass] = useState(true);
   const [isShowKeyboard, setIsShowKeyboard] = useState(false);
   const [email, setEmail] = useState();
@@ -44,6 +44,7 @@ const LoginScreen = () => {
     setEmail("");
     setPassword("");
     setFocused(null);
+    navigation.navigate("BottomTabNavigator");
   };
 
   return (
@@ -103,7 +104,11 @@ const LoginScreen = () => {
             >
               <Text style={s.btnText}>Войти</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={s.btn2} activeOpacity={0.7}>
+            <TouchableOpacity
+              style={s.btn2}
+              activeOpacity={0.7}
+              onPress={() => navigation.navigate("Registration")}
+            >
               <Text style={s.btnText2}>Нет аккаунта? Зарегестрироваться</Text>
             </TouchableOpacity>
           </View>
